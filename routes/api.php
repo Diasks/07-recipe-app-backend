@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\RecipeList;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,45 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+
+
+
+Route::post('login', 'Auth\LoginController@login');
+
+
+
+
+Route::middleware('jwt.auth')->group(function(){
+    Route::get('logout', 'Auth\LoginController@logout');
 });
+
+Route::get('users/{user}', 'UserController@show');
+
+//hämta alla listor
+Route::get('recipeLists', 'RecipeListController@index');
+
+//hämta en specifik lista
+Route::get('recipeLists/{recipeList}', 'RecipeListController@show');
+
+//skapa en ny lista
+Route::post('recipeLists', 'RecipeListController@store');
+
+//uppdatera en befintlig lista
+Route::put('recipeLists/{recipeList}', 'RecipeListController@update');
+
+
+//ta bort lista
+Route::delete('recipeLists/{recipeList}', 'RecipeListController@delete');
+
+
+//register 
+  
+Route::post('register', 'Auth\RegisterController@register');
+
+
+
+
+
+
+
+
