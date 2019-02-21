@@ -17,19 +17,11 @@ class RecipeListController extends Controller
      */
     public function index()
     {
-        //
+        
         return RecipeList::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -39,7 +31,7 @@ class RecipeListController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
         $recipeList = RecipeList::create($request->all());
         return response()->json($recipeList, 201);
 
@@ -53,20 +45,11 @@ class RecipeListController extends Controller
      */
     public function show(RecipeList $recipeList)
     {
-        //
+        
         return $recipeList;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\RecipeList  $recipeList
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(RecipeList $recipeList)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -77,7 +60,7 @@ class RecipeListController extends Controller
      */
     public function update(Request $request, RecipeList $recipeList)
     {
-        //
+        
         $recipeList->update($request->all());
         return response()->json($recipeList, 200);
     }
@@ -90,7 +73,7 @@ class RecipeListController extends Controller
      */
     public function delete(RecipeList $recipeList)
     {
-        //
+        
         $recipeList->delete();
         return respons()->json(null, 204);
     }
