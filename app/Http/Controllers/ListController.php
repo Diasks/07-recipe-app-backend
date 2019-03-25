@@ -107,7 +107,7 @@ class ListController extends Controller
 
         
       
-        return response()->json('list succesfully deleted');
+        return response()->json(null);
        
     }
 
