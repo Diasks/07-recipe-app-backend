@@ -36,7 +36,7 @@ Route::group([
     Route::post('lists/add', 'ListController@store');
 
     Route::patch('lists/{list}', 'ListController@update');
-    Route::delete('lists/{list}/{recipeId}', 'ListController@delete');
+    Route::delete('lists/{list}/{recipeId}', 'ListController@move');
      //hämta en specifik lista
      Route::get('lists/{id}', 'ListController@show');
     
