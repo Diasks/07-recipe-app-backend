@@ -72,13 +72,4 @@ class RegisterController extends Controller
     }
 
 
-    protected function registered(Request $request, $user)
-    {
-        $user->getJWTIdentifier();
-
-        return response()->json([
-            'data' => $user->toArray(), 201
-        ]);
-    }
-
 }
