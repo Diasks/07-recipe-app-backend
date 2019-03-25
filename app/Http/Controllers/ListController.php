@@ -8,7 +8,7 @@ class ListController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->except(['get', 'store', 'update', 'index', 'delete']);
+        $this->middleware('auth:api')->except(['get', 'store', 'update', 'index', 'delete', 'move']);
     }
 
 
@@ -99,15 +99,31 @@ class ListController extends Controller
      * @param  \App\RecipeList  $recipeList
      * @return \Illuminate\Http\Response
      */
-    public function delete($id, $recipe)
+    public function delete($id)
     {
-        // $list = MyList::find($id);
+        $list = MyList::find($id);
     
-        // $list->delete();
-        $rec = MyList::find($id)->where('recipe', $recipe)->$recipe->delete();
+        $list->delete();
+
         
       
-        return response()->json($rec);
+        return response()->json('list succesfully deleted');
        
     }
+
+
+    public function move($id, $recipe)
+    {
+        $list = MyList::find($id);
+        $recArr = $list->recipe;
+    
+        if (($key = array_search($recipe, $recArr)) !== false) {
+            unset($recArr[$key]);
+         }
+         $list->recipe = $recArr;
+         $list->save();
+ 
+        return response()->json($list);
+ }
+
 }
